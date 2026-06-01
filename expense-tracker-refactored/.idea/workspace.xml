@@ -2,17 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d958b1de-0674-442c-9f13-df0d3edafa6e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/expense-tracker-refactored.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/expense-tracker-refactored.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/components.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/components.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/controllers/TransactionController.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/controllers/TransactionController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/views/DashboardView.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/views/DashboardView.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/views/ModalView.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/views/ModalView.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/views/TableView.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/views/TableView.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/services/MLCategorizationService.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/services/MLCategorizationService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ml_model/category_dict.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ml_model/group1-shard1of1.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ml_model/model.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ml_model/word_index.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ml_training/dataset.csv" beforeDir="false" afterPath="$PROJECT_DIR$/ml_training/dataset.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ml_training/train_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/ml_training/train_model.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +73,7 @@
       <workItem from="1780247556778" duration="2614000" />
       <workItem from="1780258114262" duration="3841000" />
       <workItem from="1780262017954" duration="6808000" />
-      <workItem from="1780324631341" duration="2241000" />
+      <workItem from="1780324631341" duration="9343000" />
     </task>
     <servers />
   </component>
@@ -84,6 +81,6 @@
     <option name="version" value="3" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/expense_tracker_refactored$train_model.coverage" NAME="train_model Coverage Results" MODIFIED="1780263337123" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml_training" />
+    <SUITE FILE_PATH="coverage/expense_tracker_refactored$train_model.coverage" NAME="train_model Coverage Results" MODIFIED="1780333903177" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml_training" />
   </component>
 </project>

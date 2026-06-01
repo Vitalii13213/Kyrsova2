@@ -14,7 +14,7 @@ class MLCategorizationService {
             const catRes = await fetch('./ml_model/category_dict.json');
             this.categoryDict = await catRes.json();
 
-            this.model = await tf.loadGraphModel('./ml_model/model.json');
+            this.model = await tf.loadLayersModel('./ml_model/model.json');
 
             this.isReady = true;
             console.log('ШІ-модель успішно завантажена!');
