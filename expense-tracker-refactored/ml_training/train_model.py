@@ -4,10 +4,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-
-# Імпортуємо тільки головний модуль tensorflow
 import tensorflow as tf
-
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.svm import SVC
@@ -16,22 +13,12 @@ from lime.lime_text import LimeTextExplainer
 
 tf.keras.backend.clear_session()
 
-# ==========================================
-# 0. НАЛАШТУВАННЯ ШЛЯХІВ (РОЗУМНЕ ЗБЕРЕЖЕННЯ)
-# ==========================================
-# Абсолютний шлях до папки ml_training
 script_dir = os.path.dirname(os.path.abspath(__file__))
-# Абсолютний шлях до кореня проєкту (на рівень вище)
 project_root = os.path.dirname(script_dir)
-# Абсолютний шлях до фінальної папки ml_model (там, де index.html)
 output_dir = os.path.join(project_root, 'ml_model')
 
-# Створюємо папку, якщо її немає
 os.makedirs(output_dir, exist_ok=True)
 
-# ==========================================
-# 1. ДАНІ ТА ПЕРЕДОБРОБКА
-# ==========================================
 print("Завантаження та передобробка даних...")
 csv_path = os.path.join(script_dir, 'dataset.csv')
 
@@ -46,7 +33,6 @@ unique_categories = sorted(list(set(categories)))
 category_to_id = {cat: i for i, cat in enumerate(unique_categories)}
 id_to_category = {i: cat for i, cat in enumerate(unique_categories)}
 
-# Зберігаємо словник категорій у цільову папку
 with open(os.path.join(output_dir, 'category_dict.json'), 'w', encoding='utf-8') as f:
     json.dump(id_to_category, f, ensure_ascii=False)
 
@@ -59,7 +45,6 @@ X_train_raw, X_test_raw, y_train, y_test = train_test_split(
 tokenizer = tf.keras.preprocessing.text.Tokenizer(num_words=1000, oov_token="<OOV>")
 tokenizer.fit_on_texts(X_train_raw)
 
-# Зберігаємо словник слів у цільову папку
 with open(os.path.join(output_dir, 'word_index.json'), 'w', encoding='utf-8') as f:
     json.dump(tokenizer.word_index, f, ensure_ascii=False)
 
@@ -69,9 +54,6 @@ X_test_matrix = tokenizer.texts_to_matrix(X_test_raw, mode='binary')
 y_train_categorical = tf.keras.utils.to_categorical(y_train, num_classes=len(unique_categories))
 y_test_categorical = tf.keras.utils.to_categorical(y_test, num_classes=len(unique_categories))
 
-# ==========================================
-# 2. БАЗОВІ МОДЕЛІ ДЛЯ ПОРІВНЯННЯ
-# ==========================================
 print("\nНавчання базових моделей (Scikit-Learn)...")
 nb_model = MultinomialNB()
 nb_model.fit(X_train_matrix, y_train)
@@ -83,9 +65,6 @@ svm_model.fit(X_train_matrix, y_train)
 svm_preds = svm_model.predict(X_test_matrix)
 print(f"Точність SVM: {accuracy_score(y_test, svm_preds):.4f}")
 
-# ==========================================
-# 3. НАВЧАННЯ НЕЙРОННОЇ МЕРЕЖІ
-# ==========================================
 print("\nНавчання нейронної мережі (TensorFlow)...")
 inputs = tf.keras.Input(shape=(1000,), name="input_layer")
 x = tf.keras.layers.Dense(64, activation='relu', name="dense_1")(inputs)
@@ -123,9 +102,6 @@ plt.legend()
 plt.savefig(os.path.join(output_dir, 'training_history.png'))
 print(f"Графіки навчання збережено у '{output_dir}/training_history.png'")
 
-# ==========================================
-# 4. ОЦІНКА МЕТРИК НА ТЕСТОВІЙ ВИБІРЦІ
-# ==========================================
 print("\nОцінка моделі на тестових даних...")
 nn_preds_proba = model.predict(X_test_matrix)
 nn_preds = np.argmax(nn_preds_proba, axis=1)
@@ -144,9 +120,6 @@ plt.tight_layout()
 plt.savefig(os.path.join(output_dir, 'confusion_matrix.png'))
 print(f"Матрицю помилок збережено у '{output_dir}/confusion_matrix.png'")
 
-# ==========================================
-# 5. ІНТЕРПРЕТАЦІЯ МОДЕЛІ (LIME)
-# ==========================================
 print("\nГенерація пояснень ШІ (LIME)...")
 explainer = LimeTextExplainer(class_names=unique_categories)
 
@@ -159,16 +132,11 @@ if len(X_test_raw) > 0:
     exp = explainer.explain_instance(X_test_raw[idx_to_explain], predict_proba_for_lime, num_features=5, top_labels=1)
     exp.save_to_file(os.path.join(output_dir, 'lime_explanation.html'))
 
-# ==========================================
-# 6. ЕКСПОРТ ДЛЯ JS
-# ==========================================
 print("\nЕкспорт моделі для TensorFlow.js...")
 
-# Зберігаємо проміжний файл у папку ml_training
 h5_model_path = os.path.join(script_dir, 'fintrack_model.h5')
 model.save(h5_model_path, save_format='h5')
 
-# Конвертуємо і складаємо ГОТОВІ файли ПРЯМО у фінальну папку ml_model!
 print("Конвертація у формат для браузера...")
 convert_cmd = f'tensorflowjs_converter --input_format=keras "{h5_model_path}" "{output_dir}"'
 os.system(convert_cmd)

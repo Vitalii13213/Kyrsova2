@@ -3,12 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d958b1de-0674-442c-9f13-df0d3edafa6e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/services/MLCategorizationService.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/services/MLCategorizationService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ml_model/category_dict.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ml_model/group1-shard1of1.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ml_model/model.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ml_model/word_index.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ml_training/dataset.csv" beforeDir="false" afterPath="$PROJECT_DIR$/ml_training/dataset.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ml_training/train_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/ml_training/train_model.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -73,7 +67,8 @@
       <workItem from="1780247556778" duration="2614000" />
       <workItem from="1780258114262" duration="3841000" />
       <workItem from="1780262017954" duration="6808000" />
-      <workItem from="1780324631341" duration="9343000" />
+      <workItem from="1780324631341" duration="10684000" />
+      <workItem from="1780338130684" duration="3611000" />
     </task>
     <servers />
   </component>
